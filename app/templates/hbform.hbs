@@ -1,0 +1,84 @@
+{{#unless submitted}}
+    <div class="alert formInfo">Моля попълнете формата:</div>
+{{/unless}}
+
+{{#if submitted}}
+    {{#unless errors}}
+        <div class="alert formSuccess">
+            Формата е попълнена успешно. Благодаря!
+        </div>
+        <div id="formData"></div>
+    {{/unless}}
+{{/if}}
+
+{{#form url id="multipage"}}
+    <fieldset id="step1">
+        <div class="formRow">
+            {{label 'title' 'Обръщение'}}
+            {{select 'title' titles person.title name='Обръщение'}}
+        </div>
+        <div class="formRow">
+            {{label 'name' 'Име' class="required"}}
+            {{input 'Име' 'name' person.name 'text'}}
+        </div>
+        <div class="formRow">
+            {{label 'surname' 'Фамилия'}}
+            {{input 'Фамилия' 'surname' person.surname 'text'}}
+        </div>
+    </fieldset>
+    <fieldset id="step2">
+        <div class="formRow">
+            {{label 'username' 'Потребителко име' class="required"}}
+            {{input 'Потребителко име' 'username' person.username 'text'}}
+        </div>
+        <div class="formRow">
+            {{label 'email' 'E-mail' class="required"}}
+            {{input 'E-mail' 'email' person.email 'email'}}
+        </div>
+    </fieldset>
+    <fieldset id="step3">
+        <div class="formRow">
+            {{label 'telephone' 'Телефонен номер' class="required"}}
+            {{input 'Телефонен номер' 'telephone' person.telephone 'tel' maxlength="10"}}
+        </div>
+        <div class="formRow">
+            {{label 'birthdate' 'Рожден ден'}}
+            {{input 'Рожден ден' 'birthdate' person.birthdate 'text'}}
+        </div>
+        <div class="formRow">
+            {{label 'food' 'Любима храна'}}
+            {{select 'food' foods person.food name="Любима храна"}}
+        </div>
+    </fieldset>
+    <fieldset id="step4">
+        <div class="formRow">
+            {{#label}}
+                {{checkbox 'employed' 'yes' person.employed name="Работите ли?"}}
+                Работите ли?
+            {{/label}}
+        </div>
+        <div class="formRow">
+            {{label '' "Пиете ли бира?"}}
+            {{#label}}
+                {{radio 'drinksBeer' 'yes' person.drinksBeer name="Пиете ли бира?"}}
+                Да
+            {{/label}}
+            {{#label}}
+                {{radio 'drinksBeer' 'no' person.drinksBeer name="Пиете ли бира?"}}
+                Не
+            {{/label}}
+        </div>
+    </fieldset>
+    <fieldset id="step5">
+        <div class="formRow">
+            {{label 'bio' 'За Вас' class="required"}}
+            {{textarea 'bio' person.bio name="За Вас"}}
+        </div>
+        <div class="formRow">
+            {{label 'projects' 'Брой проекти'}}
+            {{input 'Брой проекти' 'projects' person.projects 'number'}}
+        </div>
+    </fieldset>
+
+    <input type="submit" value="Изпрати" />
+{{/form}}
